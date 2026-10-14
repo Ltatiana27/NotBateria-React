@@ -70,7 +70,7 @@ function App() {
 
   return (
     <div className="container mt-5">
-      <h1 className="text-center mb-4">NotiBatería - Panel de Configuración</h1>
+      <h1 className="text-center mb-4">NotBateria - Panel de Configuración</h1>
 
       {mensaje && (
         <div className={`alert alert-${mensaje.tipo === 'exito' ? 'success' : 'danger'}`}>
