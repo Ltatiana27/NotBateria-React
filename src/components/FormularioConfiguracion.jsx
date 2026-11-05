@@ -21,6 +21,12 @@ function FormularioConfiguracion({ onGuardar }) {
       alert('El límite debe estar entre 50 y 100');
       return;
     }
+	// Validación del correo debe terminar en .com (regla de negocio)
+  const regexCorreo = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+    if (!regexCorreo.test(correo)) {
+      alert('El correo debe tener un formato válido (ejemplo@dominio.com)');
+      return;
+    }
 
     // Crear objeto y enviar al componente padre
     onGuardar({ nombre, correo, limite });
@@ -39,19 +45,21 @@ function FormularioConfiguracion({ onGuardar }) {
       <div className="card-body">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label">Nombre:</label>
-            <input
-              type="text"
-              className="form-control"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-              required
-            />
-          </div>
+			<label htmlFor="nombre" className="form-label">Nombre:</label>
+			<input
+				id="nombre"
+				type="text"
+				className="form-control"
+				value={nombre}
+				onChange={(e) => setNombre(e.target.value)}
+				required
+			/>
+		  </div>
 
           <div className="mb-3">
-            <label className="form-label">Correo:</label>
+            <label htmlFor="correo" className="form-label">Correo:</label>
             <input
+			  id="correo"
               type="email"
               className="form-control"
               value={correo}
@@ -59,17 +67,18 @@ function FormularioConfiguracion({ onGuardar }) {
               required
             />
           </div>
-
-          <div className="mb-3">
-            <label className="form-label">Límite de batería (%):</label>
+		  
+		  <div className="mb-3">
+            <label htmlFor="limite" className="form-label">Límite de batería (%):</label>
             <input
-              type="number"
-              className="form-control"
-              value={limite}
-              onChange={(e) => setLimite(parseInt(e.target.value))}
-              min="50"
-              max="100"
-              required
+				  id="limite"
+                  type="number"
+				  className="form-control"
+				  value={limite}
+				  onChange={(e) => setLimite(parseInt(e.target.value))}
+				  min="50"
+				  max="100"
+				  required
             />
           </div>
 
